@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        .form-style-1 {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-style-1 li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.form-style-1 label {
+    margin: 0 0 3px 0;
+    padding: 0;
+    display: block;
+    font-weight: bold;
+}
+
+.form-style-1 input[type="text"],
+.form-style-1 input[type="date"],
+.form-style-1 input[type="datetime"],
+.form-style-1 input[type="number"],
+.form-style-1 input[type="search"],
+.form-style-1 input[type="time"],
+.form-style-1 input[type="url"],
+.form-style-1 input[type="email"],
+textarea,
+select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 7px;
+    margin: 0;
+    transition: all 0.30s ease-in-out;
+    outline: none;
+    width: 100%;
+}
+
+.form-style-1 input[type="text"]:focus,
+.form-style-1 input[type="date"]:focus,
+.form-style-1 input[type="datetime"]:focus,
+.form-style-1 input[type="number"]:focus,
+.form-style-1 input[type="search"]:focus,
+.form-style-1 input[type="time"]:focus,
+.form-style-1 input[type="url"]:focus,
+.form-style-1 input[type="email"]:focus,
+.form-style-1 textarea:focus,
+.form-style-1 select:focus {
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+
+.form-style-1 .field-divided {
+    width: 49%;
+}
+
+.form-style-1 .field-long {
+    width: 100%;
+}
+
+.form-style-1 .field-select {
+    width: 100%;
+}
+
+.form-style-1 .field-textarea {
+    height: 100px;
+}
+
+.form-style-1 input[type="submit"],
+.form-style-1 input[type="button"] {
+    background: #4B99AD;
+    padding: 8px 15px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.form-style-1 input[type="submit"]:hover,
+.form-style-1 input[type="button"]:hover {
+    background: #4691A4;
+}
+
+.form-style-1 .required {
+    color: red;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 480px) {
+    .form-style-1 {
+        max-width: 100%;
+    }
+    .form-style-1 li {
+        margin-bottom: 20px;
+    }
+    .form-style-1 .field-divided {
+        width: 100%;
+    }
+}
+
+    </style>
+    <script  >
+      
+function sendMail(){
+   
+    var params={
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+    }
+    const serviceID = "service_rm4bjtt"
+    const templateID= "template_4np9sla"
+
+    emailjs.send(serviceID,templateID,params)
+   .then(
+      res=>{
+        document.getElementById("name").value="";
+        document.getElementById("email").value="";
+        document.getElementById("message").value="";
+        console.log(res);
+        alert("your message sent succesfully")
+    }
+)
+.catch((err)=>console.log(err))
+}
+
+
+    </script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+     <script type="text/javascript">
+     (function(){
+     emailjs.init("HRtLV15DWQFnYZvFQ");
+     })();
+    </script>
+</head>
+<body>
+    <form action="/products" method="POST">
+        <ul class="form-style-1">
+            <li>
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" class="field-divided" placeholder="enter your full name" />
+                
+            </li>
+            <li>
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" class="field-long" />
+            </li>
+ 
+            <li>
+                <label for="message">Your Message <span class="required">*</span></label>
+                <textarea name="message" id="message" class="field-long field-textarea"></textarea>
+            </li>
+            <li>
+                <button onclick="sendMail()">SUBMIT </button>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>
